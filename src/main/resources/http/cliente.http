@@ -1,0 +1,42 @@
+# Testes da API
+
+## CLIENTES
+### Get All
+GET http://localhost:8080/clientes
+
+### Get by ID
+GET http://localhost:8080/clientes/11
+
+### Post
+POST http://localhost:8080/clientes
+Content-Type: application/json
+
+{
+  "cpf": "66962145853",
+  "nome": "Jones Prado",
+  "email": "jones.prado@gmail.com",
+  "telefone": "5511961398445",
+  "dataNascimento": "02/12/2000"
+}
+
+### Patch
+PATCH http://localhost:8080/clientes/9
+Content-Type: application/json
+
+{
+  "nome": "Leticia Favoretto"
+}
+
+### Patch
+PATCH http://localhost:8080/clientes/6
+Content-Type: application/json
+
+{
+  "dataNascimento": "26/02/2000"
+}
+
+### Inativar
+PATCH http://localhost:8080/clientes/9/inativar
+
+### Excluir
+DELETE http://localhost:8080/clientes/11

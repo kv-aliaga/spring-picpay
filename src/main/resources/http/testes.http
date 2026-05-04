@@ -1,0 +1,146 @@
+### BASE
+@baseUrl = http://localhost:8080
+
+### =========================
+### CLIENTES
+### =========================
+
+### Criar cliente
+POST {{baseUrl}}/clientes
+Content-Type: application/json
+
+{
+  "nome": "Davi",
+  "cpf": "32166684874",
+  "email": "davi@email.com",
+  "telefone": "11999998888",
+  "dataNascimento": "26/02/2000"
+}
+
+### Buscar todos clientes
+GET {{baseUrl}}/clientes
+
+### Buscar cliente por ID
+GET {{baseUrl}}/clientes/1
+
+### Buscar cliente com ID inválido
+### Não deu throw certo
+GET {{baseUrl}}/clientes/-1
+
+### Patch cliente
+PATCH {{baseUrl}}/clientes/1
+Content-Type: application/json
+
+{
+  "nome": "Davi Atualizado",
+  "email": "davi.novo@email.com"
+}
+
+### Inativar cliente
+PATCH {{baseUrl}}/clientes/1/inativar
+
+### Excluir cliente
+DELETE {{baseUrl}}/clientes/1
+
+
+### =========================
+### CONTAS
+### =========================
+
+### Criar conta
+POST {{baseUrl}}/contas
+Content-Type: application/json
+
+{
+  "numero": 55556,
+  "tipo": "Universitária",
+  "agencia": "0001",
+  "saldo": 1000.00,
+  "tipoConta": "CORRENTE",
+  "idCliente": 1
+}
+
+### Criar segunda conta
+POST {{baseUrl}}/contas
+Content-Type: application/json
+
+{
+  "numero": "48489",
+  "agencia": "0001",
+  "saldo": 500.00,
+  "tipo": "POUPANCA",
+  "idCliente": 1
+}
+
+### Buscar todas contas
+GET {{baseUrl}}/contas
+
+### Buscar conta por ID
+GET {{baseUrl}}/contas/1
+
+### Buscar conta com ID inválido
+GET {{baseUrl}}/contas/abc
+
+### Patch conta
+PATCH {{baseUrl}}/contas/5
+Content-Type: application/json
+
+{
+  "idClient": 2
+}
+
+### Inativar conta
+PATCH {{baseUrl}}/contas/2/inativar
+
+### Alterar saldo
+PATCH {{baseUrl}}/contas/5/saldo?valor=-1600.00
+
+### Alterar saldo sem parâmetro
+PATCH {{baseUrl}}/contas/1/saldo
+
+### Alterar tipo da conta
+PATCH {{baseUrl}}/contas/5/tipo?conta=POUPANCA
+
+### Alterar tipo inválido
+PATCH {{baseUrl}}/contas/4/tipo?conta=BATATA
+
+### Transferência
+PATCH {{baseUrl}}/contas/transferencia?origem=9&destino=8&valor=100.00
+
+### Transferência com valor negativo
+PATCH {{baseUrl}}/contas/transferencia?origem=1&destino=2&valor=-100.00
+
+### Transferência para mesma conta
+PATCH {{baseUrl}}/contas/transferencia?origem=1&destino=1&valor=100.00
+
+### Transferência sem parâmetro obrigatório
+PATCH {{baseUrl}}/contas/transferencia?origem=1&valor=100.00
+
+### Excluir conta
+DELETE {{baseUrl}}/contas/1
+
+
+### =========================
+### ERROS GERAIS
+### =========================
+
+### Rota inexistente
+GET {{baseUrl}}/rota-inexistente
+
+### Método errado
+POST {{baseUrl}}/contas/1
+
+### Content-Type errado
+POST {{baseUrl}}/clientes
+Content-Type: text/plain
+
+teste
+
+### JSON quebrado
+POST {{baseUrl}}/clientes
+Content-Type: application/json
+
+{
+  "nome": "Davi",
+  "cpf":
+}

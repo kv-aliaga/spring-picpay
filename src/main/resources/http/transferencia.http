@@ -1,0 +1,12 @@
+### TESTES DE TRANSFÊRENCIA
+
+### Get Conta origem (Saldo: R$ 1500.00)
+GET http://localhost:8080/contas/1
+
+### Get Conta destino (Saldo: R$ 300.00)
+GET http://localhost:8080/contas/5
+
+### Transferência
+PATCH http://localhost:8080/contas/transferencia?origem=1&destino=5&valor=500
+
+### funciona!!

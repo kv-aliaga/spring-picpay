@@ -1,0 +1,40 @@
+# Testes da API
+
+## Contas
+### Get All
+GET http://localhost:8080/contas
+
+### Get by ID
+GET http://localhost:8080/contas/8
+
+### Post
+POST http://localhost:8080/contas
+Content-Type: application/json
+
+{
+  "numero": "27395",
+  "agencia": "Jones Prado Agency",
+  "saldo": 67.00,
+  "tipo": "Poupança",
+  "idCliente": 2
+}
+
+### Patch
+PATCH http://localhost:8080/contas/6
+Content-Type: application/json
+
+{
+  "agencia": "Jone Jones"
+}
+
+### Alterar saldo
+PATCH http://localhost:8080/contas/9/saldo?valor=125.00
+
+### Inativar
+PATCH http://localhost:8080/contas/9/inativar
+
+### Alterar tipo da conta
+PATCH http://localhost:8080/contas/8/tipo?conta=Poupanca
+
+### Excluir
+DELETE http://localhost:8080/contas/1
